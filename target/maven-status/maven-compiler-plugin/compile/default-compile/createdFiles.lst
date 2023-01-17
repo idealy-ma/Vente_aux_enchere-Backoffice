@@ -1,8 +1,0 @@
-com/example/demo/model/Kilometrage.class
-com/example/demo/model/Responsable.class
-com/example/demo/DemoApplication.class
-com/example/demo/model/Vehicule.class
-com/example/demo/connection/ConnectionDB.class
-com/example/demo/util/Formatter.class
-com/example/demo/model/Marque.class
-com/example/demo/controller/VehiculeController.class
