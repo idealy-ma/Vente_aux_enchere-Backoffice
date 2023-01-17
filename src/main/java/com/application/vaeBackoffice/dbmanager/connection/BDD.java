@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.application.rencontre.dbmanager.connection;
+package com.application.vaeBackoffice.dbmanager.connection;
 
 import java.sql.DriverManager;
 import java.sql.Connection;

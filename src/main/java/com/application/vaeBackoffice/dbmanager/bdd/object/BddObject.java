@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package com.application.rencontre.dbmanager.bdd.object;
+package com.application.vaeBackoffice.dbmanager.bdd.object;
 
-import com.application.rencontre.dbmanager.annotation.DBTable;
-import com.application.rencontre.dbmanager.annotation.PrimaryKey;
-import com.application.rencontre.dbmanager.connection.BDD;
+import com.application.vaeBackoffice.dbmanager.annotation.DBTable;
+import com.application.vaeBackoffice.dbmanager.annotation.PrimaryKey;
+import com.application.vaeBackoffice.dbmanager.connection.BDD;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.Statement;

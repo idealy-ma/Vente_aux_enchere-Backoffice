@@ -1,4 +1,4 @@
-package com.application.rencontre;
+package com.application.vaeBackoffice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

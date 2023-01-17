@@ -1,4 +1,4 @@
-package com.application.rencontre.util.exception;
+package com.application.vaeBackoffice.util.exception;
 
 public class JSONException{
     private final String code;
