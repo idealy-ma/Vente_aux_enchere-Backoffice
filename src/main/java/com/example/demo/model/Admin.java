@@ -5,54 +5,35 @@
  */
 package com.example.demo.model;
 
+
+
+import com.example.demo.dbmanager.bdd.object.BddObject;
+import com.example.demo.dbmanager.connection.BDD;
+import com.example.demo.util.security.Security;
+import com.example.demo.util.security.TokenUserModel;
+import com.example.demo.util.*;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.example.demo.dbmanager.annotation.PrimaryKey;
-import com.example.demo.dbmanager.bdd.object.BddObject;
-import com.example.demo.dbmanager.connection.BDD;
-import com.example.demo.util.security.Security;
-import com.example.demo.util.security.TokenUserModel;
-
 /**
  *
- * @author P14A_30_Ando
+ * @author Cedrick
  */
-public class Client extends BddObject{
-    @PrimaryKey
-    private int idClient;
-    private String nom;
-    private String prenom;
+public class Admin extends BddObject{
+    private int idAdmin;
     private String email;
     private String mdp;
-    private float solde;
     private TokenUserModel myToken;
 
-    public int getIdClient() {
-        return idClient;
+    public int getIdAdmin() {
+        return idAdmin;
     }
 
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     public String getEmail() {
@@ -70,26 +51,19 @@ public class Client extends BddObject{
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
-    public float getSolde() {
-        return solde;
-    }
-    public void setSolde(float solde) {
-        this.solde = solde;
-    }
-    
     public void generateToken() throws Exception{
         TokenUserModel tum = new TokenUserModel();
-        tum.setUserId(this.getIdClient());
-        tum.setHash(Security.getMd5(String.valueOf(this.getIdClient())));
+        tum.setUserId(this.getIdAdmin());
+        tum.setHash(Security.getMd5(String.valueOf(this.getIdAdmin())));
         tum.setExpirationDate(Timestamp.valueOf(LocalDateTime.now()));
         try {
-            BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+            BDD bdd = new BDD("postgres", "cedric10", "enchere", "postgresql");
             Connection c = bdd.getConnection();
             tum.find(c);
             c.close();
             this.setMyToken(tum);
         } catch (Exception ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
     }
@@ -98,8 +72,8 @@ public class Client extends BddObject{
         if(this.myToken == null){
             try {
                 this.myToken = new TokenUserModel();
-                myToken.setUserId(this.getIdClient());
-                BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+                myToken.setUserId(this.getIdAdmin());
+                BDD bdd = new BDD("postgres", "cedric10", "enchere", "postgresql");
                 Connection c = bdd.getConnection();
                 myToken.find(c);
                 c.close();
@@ -114,6 +88,5 @@ public class Client extends BddObject{
 
     public void setMyToken(TokenUserModel myToken) {
         this.myToken = myToken;
-    }    
-    
+    }
 }

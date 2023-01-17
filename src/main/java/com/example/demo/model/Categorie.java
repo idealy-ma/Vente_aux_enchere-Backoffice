@@ -5,7 +5,7 @@
  */
 package com.example.demo.model;
 
-import com.application.vaeBackoffice.dbmanager.bdd.object.BddObject;
+import com.example.demo.dbmanager.bdd.object.BddObject;
 
 /**
  *

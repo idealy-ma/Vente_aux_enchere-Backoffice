@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package com.application.vaeBackoffice.dbmanager.bdd.object;
+package com.example.demo.dbmanager.bdd.object;
 
-import com.application.vaeBackoffice.dbmanager.annotation.DBTable;
-import com.application.vaeBackoffice.dbmanager.annotation.PrimaryKey;
-import com.application.vaeBackoffice.dbmanager.connection.BDD;
+import com.example.demo.dbmanager.annotation.DBTable;
+import com.example.demo.dbmanager.annotation.PrimaryKey;
+import com.example.demo.dbmanager.connection.BDD;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.Statement;
@@ -179,6 +179,7 @@ public class BddObject {
             preparedStatement = c.prepareStatement(sql);
             
             for (int i = 0; i < colList.length; i++) {
+                System.out.println(!isPrimaryKey(colList[i]));
                 if(!isPrimaryKey(colList[i])){
                     System.out.println(colList[i]);
                     Method m = this.getMethodInto("get"+colList[i], methods);

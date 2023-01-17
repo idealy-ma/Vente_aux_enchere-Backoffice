@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.application.vaeBackoffice.dbmanager.connection;
+package com.example.demo.dbmanager.connection;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -25,6 +25,10 @@ public final class BDD {
         this.setDatabaseName(databaseName);
         this.setMdp(mdp);
         this.setDatabaseType(databaseType);
+    }
+
+    public BDD(String postgres, String root, String enchere) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public String getDatabaseType() {
