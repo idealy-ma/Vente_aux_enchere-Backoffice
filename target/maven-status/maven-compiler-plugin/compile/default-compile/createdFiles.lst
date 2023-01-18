@@ -1,3 +1,13 @@
-com\example\demo\util\security\TokenUserModel.class
-com\example\demo\util\exception\JSONException.class
-com\example\demo\util\security\Security.class
+com/example/demo/util/security/TokenUserModel.class
+com/example/demo/model/Admin.class
+com/example/demo/util/security/Security.class
+com/example/demo/model/Client.class
+com/example/demo/dbmanager/connection/BDD.class
+com/example/demo/model/Enchere.class
+com/example/demo/DemoApplication.class
+com/example/demo/model/Categorie.class
+com/example/demo/util/exception/JSONException.class
+com/example/demo/dbmanager/bdd/object/BddObject.class
+com/example/demo/controller/AdminController.class
+com/example/demo/dbmanager/annotation/DBTable.class
+com/example/demo/dbmanager/annotation/PrimaryKey.class

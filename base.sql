@@ -121,6 +121,12 @@ Create table rechargevalide(
     dateValidation date
 );
 
+CREATE TABLE TokenUserModel(
+  idClient INT REFERENCES admin(idAdmin),
+  hash text,
+  expirationDate timestamp not null
+);
+
 
 
 

@@ -57,11 +57,11 @@ public class Admin extends BddObject{
         tum.setHash(Security.getMd5(String.valueOf(this.getIdAdmin())));
         tum.setExpirationDate(Timestamp.valueOf(LocalDateTime.now()));
         try {
-            BDD bdd = new BDD("postgres", "cedric10", "enchere", "postgresql");
+            BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
             Connection c = bdd.getConnection();
-            tum.find(c);
-            c.close();
+            tum.create(c);
             this.setMyToken(tum);
+            c.close();
         } catch (Exception ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
@@ -73,12 +73,15 @@ public class Admin extends BddObject{
             try {
                 this.myToken = new TokenUserModel();
                 myToken.setUserId(this.getIdAdmin());
-                BDD bdd = new BDD("postgres", "cedric10", "enchere", "postgresql");
+                BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
                 Connection c = bdd.getConnection();
                 myToken.find(c);
+                if(myToken.getExpirationDate().getTime() <= Timestamp.valueOf(LocalDateTime.now()).getTime()){
+                    // TODO : delete this token;
+                    this.generateToken();
+                }
+                if(myToken.getHash() == null) this.generateToken();
                 c.close();
-                // TODO : verification si le token est expirer
-                if(myToken.getHash()==null) this.generateToken();
             } catch (Exception ex) {
                 Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             }
