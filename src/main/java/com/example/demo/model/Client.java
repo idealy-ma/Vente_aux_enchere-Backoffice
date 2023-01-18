@@ -8,6 +8,7 @@ package com.example.demo.model;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +29,7 @@ public class Client extends BddObject{
     private String prenom;
     private String email;
     private String mdp;
-    private float solde;
+    private double soldeClient;
     private TokenUserModel myToken;
 
     public int getIdClient() {
@@ -70,11 +71,11 @@ public class Client extends BddObject{
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
-    public float getSolde() {
-        return solde;
+    public double getSoldeClient() {
+        return soldeClient;
     }
-    public void setSolde(float solde) {
-        this.solde = solde;
+    public void setSoldeClient(double soldeClient) {
+        this.soldeClient = soldeClient;
     }
     
     public void generateToken() throws Exception{
@@ -116,4 +117,12 @@ public class Client extends BddObject{
         this.myToken = myToken;
     }    
     
+    @Override
+    public void update(Connection c) throws Exception {
+        String sql = "update client set soldeClient = ? where idclient = ?";
+        ArrayList<Object> objects=new ArrayList<>();
+        objects.add(this.soldeClient);
+        objects.add(this.idClient);
+        executeQuery(c, sql, objects);
+    }
 }

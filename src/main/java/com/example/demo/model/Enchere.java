@@ -44,7 +44,7 @@ public class Enchere extends BddObject{
             this.client = new Client();
             this.client.setIdClient(this.getIdClient());
             try {
-                Connection c = new BDD("postgres","root","Enchere","postgresql").getConnection();
+                Connection c = new BDD("vae","vae","vae","postgresql").getConnection();
                 this.client.find(c);
                 c.close();
             } catch (SQLException ex) {
@@ -109,7 +109,7 @@ public class Enchere extends BddObject{
             this.categorie = new Categorie();
             this.categorie.setIdCategorie(this.getIdCategorie());
             try {
-                Connection c = new BDD("postgres","root","Enchere","postgresql").getConnection();
+                Connection c = new BDD("vae","vae","vae","postgresql").getConnection();
                 this.categorie.find(c);
                 c.close();
             } catch (SQLException ex) {
@@ -143,6 +143,7 @@ public class Enchere extends BddObject{
     
     @Override
     public void create(Connection c) throws Exception {
+        super.create(c);
         String sql="insert into Enchere(nomproduit,prixMin,description,idCategorie,idClient) values (?,?,?,?,?)";
         ArrayList<Object> objects=new ArrayList<>();
         objects.add(this.nomProduit);
@@ -151,5 +152,15 @@ public class Enchere extends BddObject{
         objects.add(this.idCategorie);
         objects.add(this.idClient);
         executeQuery(c, sql, objects);
+    }
+
+    public ArrayList<Object> findEnchereValide(Connection connection) throws Exception {
+        String sql = "select * from enchere e left join enchereValide ev on ev.idEnchere = e.idEnchere where ev.idEnchereValide is not null";
+        return executeResultedQuery(connection, sql, null);             
+    }
+    
+    public ArrayList<Object> findEnchereNotValide(Connection connection) throws Exception {
+        String sql = "select * from enchere e left join enchereValide ev on ev.idEnchere = e.idEnchere where ev.idEnchereValide is null";
+        return executeResultedQuery(connection, sql, null);             
     }
 }
