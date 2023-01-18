@@ -1,8 +1,7 @@
 package com.example.demo.util.security;
 
+import com.example.demo.dbmanager.bdd.object.BddObject;
 import java.sql.Timestamp;
-
-import com.application.vaeBackoffice.dbmanager.bdd.object.BddObject;
 
 public class TokenUserModel extends BddObject{
     private int userId;

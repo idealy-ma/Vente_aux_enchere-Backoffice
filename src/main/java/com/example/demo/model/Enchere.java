@@ -12,9 +12,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.application.vaeBackoffice.dbmanager.annotation.PrimaryKey;
-import com.application.vaeBackoffice.dbmanager.bdd.object.BddObject;
-import com.application.vaeBackoffice.dbmanager.connection.BDD;
+import com.example.demo.dbmanager.annotation.PrimaryKey;
+import com.example.demo.dbmanager.bdd.object.BddObject;
+import com.example.demo.dbmanager.connection.BDD;
+
 
 /**
  *
