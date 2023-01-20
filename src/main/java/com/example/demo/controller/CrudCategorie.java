@@ -18,7 +18,7 @@ public class CrudCategorie {
     BDD bdd = null;
     public CrudCategorie() {
         try {
-            bdd = new BDD("vae","vae","vae","postgresql");
+            bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
         } catch (Exception e) {
             e.printStackTrace();
         }

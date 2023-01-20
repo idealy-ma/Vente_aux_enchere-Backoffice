@@ -26,7 +26,7 @@ public class RechargeValide extends BddObject {
             this.rechargementCompte = new RechargementCompte();
             this.rechargementCompte.setIdRechargement(this.getIdRechargement());
             try {
-                Connection c = new BDD("vae","vae","vae","postgresql").getConnection();
+                Connection c = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql").getConnection();
                 this.rechargementCompte.find(c);
                 c.close();
             } catch (Exception ex) {

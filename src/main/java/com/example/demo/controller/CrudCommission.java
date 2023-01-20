@@ -18,7 +18,7 @@ public class CrudCommission {
     BDD bdd = null;
     public CrudCommission() {
         try {
-            bdd = new BDD("vae","vae","vae","postgresql");
+            bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
         } catch (Exception e) {
             e.printStackTrace();
         }

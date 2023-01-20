@@ -29,7 +29,7 @@ public class RechargementCompte extends BddObject {
             this.client = new Client();
             this.client.setIdClient(this.getIdClient());
             try {
-                Connection c = new BDD("vae","vae","vae","postgresql").getConnection();
+                Connection c = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql").getConnection();
                 this.client.find(c);
                 c.close();
             } catch (Exception ex) {

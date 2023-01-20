@@ -38,7 +38,7 @@ public class EnchereValide extends BddObject {
             this.enchere = new Enchere();
             this.enchere.setIdEnchere(this.getIdEnchere());
             try {
-                Connection c = new BDD("vae","vae","vae","postgresql").getConnection();
+                Connection c = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql").getConnection();
                 this.enchere.find(c);
                 c.close();
             } catch (Exception ex) {
