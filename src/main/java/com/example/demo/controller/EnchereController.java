@@ -40,7 +40,7 @@ public class EnchereController {
         returnValue.clear();
         ArrayList<Enchere> list = new ArrayList<>();
         try {
-            BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+            BDD bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
             Connection c = bdd.getConnection();
             Enchere enchere = new Enchere();
             ArrayList<Object> listeObjectClient = enchere.findEnchereValide(c);
@@ -64,7 +64,7 @@ public class EnchereController {
         returnValue.clear();
         ArrayList<Enchere> list = new ArrayList<>();
         try {
-            BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+            BDD bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
             Connection c = bdd.getConnection();
             Enchere enchere = new Enchere();
             ArrayList<Object> listeObjectClient = enchere.findEnchereNotValide(c);
@@ -87,7 +87,7 @@ public class EnchereController {
     public HashMap<String, Object> ValideAjoutEnchere(@RequestBody EnchereValide enchereValide) throws Exception{
         returnValue.clear();
         try {
-            BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+            BDD bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
             Connection c = bdd.getConnection();
             
             enchereValide.create(c);

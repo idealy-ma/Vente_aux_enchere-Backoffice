@@ -56,7 +56,7 @@ public class Admin extends BddObject{
         tum.setHash(Security.getMd5(String.valueOf(this.getIdAdmin())));
         tum.setExpirationDate(Timestamp.valueOf(LocalDateTime.now()));
         try {
-            BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+            BDD bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
             Connection c = bdd.getConnection();
             tum.find(c);
             c.close();
@@ -72,7 +72,7 @@ public class Admin extends BddObject{
             try {
                 this.myToken = new TokenUserModel();
                 myToken.setUserId(this.getIdAdmin());
-                BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+                BDD bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
                 Connection c = bdd.getConnection();
                 myToken.find(c);
                 c.close();

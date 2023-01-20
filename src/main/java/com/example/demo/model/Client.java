@@ -84,7 +84,7 @@ public class Client extends BddObject{
         tum.setHash(Security.getMd5(String.valueOf(this.getIdClient())));
         tum.setExpirationDate(Timestamp.valueOf(LocalDateTime.now()));
         try {
-            BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+            BDD bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
             Connection c = bdd.getConnection();
             tum.find(c);
             c.close();
@@ -100,7 +100,7 @@ public class Client extends BddObject{
             try {
                 this.myToken = new TokenUserModel();
                 myToken.setUserId(this.getIdClient());
-                BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
+                BDD bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
                 Connection c = bdd.getConnection();
                 myToken.find(c);
                 c.close();
@@ -116,7 +116,7 @@ public class Client extends BddObject{
     public void setMyToken(TokenUserModel myToken) {
         this.myToken = myToken;
     }
-    
+
     public void updateSolde(Connection c) throws Exception {
         String sql = "UPDATE client set soldeClient = ? where idClient = ?";
         ArrayList<Object> objects=new ArrayList<>();
