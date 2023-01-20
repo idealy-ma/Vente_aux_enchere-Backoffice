@@ -12,7 +12,7 @@ public class Statistique {
 
     public Statistique(){
         try {
-            bdd = new BDD("vae", "vae", "vae","Postgresql");
+            bdd = new BDD("postgres", "HY6NINF73nbTN5zYpzsk", "railway", "postgresql");
         } catch (Exception e) {
             e.printStackTrace();
         }
