@@ -25,7 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -35,22 +35,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 public class AdminController {
+    BDD bdd = null;
     HashMap<String, Object> returnValue;
     
     public AdminController() {
         returnValue = new HashMap<>();
+        try {
+            bdd = new BDD("vae", "vae", "vae", "postgresql");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }  
     
-    @PostMapping("/admin")
-    public HashMap<String, Object> admin(@RequestHeader(name="email") String email, @RequestHeader(name="mdp") String mdp) throws Exception{
+    @PostMapping("/login")
+    public HashMap<String, Object> admin(@RequestBody Admin admin) throws Exception{
         try {
             returnValue.clear();
-            BDD bdd = new BDD("postgres", "cedric10", "enchere", "postgresql");
             try (Connection c = bdd.getConnection()) {
-                Admin admin = new Admin();
-                admin.setEmail(email);
-                admin.setMdp(mdp);
-
                 admin.find(c);
                 if(admin.getIdAdmin()>0){
                     returnValue.put("data", admin.getMyToken());
@@ -63,7 +65,6 @@ public class AdminController {
             returnValue.put("error", new JSONException("500", ex.getMessage()));
             return returnValue;
         }
-        returnValue.put("response", new JSONException("200", "Insertion OK"));
         return returnValue;
     }
 

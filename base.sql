@@ -1,4 +1,4 @@
-Create database enchere;
+-- Create database enchere;
 
 CREATE TABLE Admin (
   idAdmin SERIAL NOT NULL, 
@@ -39,8 +39,8 @@ CREATE TABLE Commission (
 CREATE TABLE Enchere (
   idEnchere            SERIAL NOT NULL, 
   nomProduit           varchar(255) NOT NULL, 
-  dateDebut            timestamp default NULL, 
-  dateFin              timestamp default NULL, 
+  dateDebut            timestamp default CURRENT_TIMESTAMP, 
+  dateFin            timestamp NOT NULL, 
   prixMin              float8 NOT NULL, 
   description          varchar(255) NOT NULL, 
   idCategorie int4 NOT NULL, 
@@ -48,7 +48,7 @@ CREATE TABLE Enchere (
   PRIMARY KEY (idEnchere),
   Foreign key(idCategorie) REFERENCES Categorie(idCategorie),
   Foreign key(idClient) REFERENCES Client(idClient)
-  );
+);
 insert into Enchere(idClient,idCategorie,nomProduit,dateDebut,dateFin,prixMin,description) values ('1','2','Collier','16-01-2023 06:00:00','20-01-2023 12:00:00','60000','Fabriqué en Inde');
 
 CREATE TABLE EnchereValide(
@@ -78,7 +78,7 @@ CREATE TABLE MvmtCompte (
   idClient int4 NOT NULL, 
   PRIMARY KEY (idMvmt),
   FOREIGN key(idClient) REFERENCES Client(idClient)
-  );
+);
 
 CREATE TABLE PhotoEnchere (
   idPhotoEnchere   SERIAL NOT NULL, 
@@ -86,7 +86,7 @@ CREATE TABLE PhotoEnchere (
   idEnchere int4 NOT NULL, 
   PRIMARY KEY (idPhotoEnchere),
   FOREIGN key(idEnchere) REFERENCES Enchere(idEnchere)
-  );
+);
 
 CREATE TABLE ResultatEnchere (
   idResultat       SERIAL NOT NULL, 
@@ -94,8 +94,7 @@ CREATE TABLE ResultatEnchere (
   MiseidMise       int4 NOT NULL, 
   PRIMARY KEY (idResultat),
   FOREIGN key(idEnchere) REFERENCES Enchere(idEnchere)
-  );
-
+);
 
 CREATE VIEW v_detailEnchere AS
   SELECT e.*,nomCategorie
@@ -104,6 +103,27 @@ CREATE VIEW v_detailEnchere AS
 CREATE VIEW v_HistoriqueEnchere AS
   SELECT nom,prenom,soldeMise,dateMise
   FROM Client c join Mise m on c.idClient=m.idClient;
+
+CREATE OR REPLACE VIEW v_encherevalide as (
+  SELECT enchere.* 
+  FROM enchere 
+  JOIN EnchereValide 
+  on enchere.idEnchere = EnchereValide.idEnchere
+);
+
+CREATE OR REPLACE VIEW v_encherenonvalide as (
+  SELECT enchere.* 
+    FROM enchere 
+    left join EnchereValide 
+    on enchere.idEnchere = EnchereValide.idEnchere
+    where EnchereValide.idencherevalide is null
+);
+
+CREATE OR REPLACE VIEW v_mise_ordered AS(
+  SELECT MAX(idMise)
+  FROM mise
+  GROUP BY 
+);
 
 Create TABLE RechargementCompte(
     idRechargement serial primary key,
@@ -121,8 +141,61 @@ Create table rechargevalide(
     dateValidation date
 );
 
+CREATE TABLE TokenUserModel(
+  userId int REFERENCES client(idClient),
+  hash VARCHAR(255) NOT null,
+  expirationDate TIMESTAMP not null
+);
+
+CREATE or REPLACE VIEW v_max_per_encher as(
+  select max(idMise) idMise, idenchere
+  from mise 
+  group by idenchere
+);
+
+CREATE OR REPLACE VIEW v_last_per_encher as(
+  select enchere.*
+  from enchere
+  join v_max_per_encher
+  on v_max_per_encher.idenchere = enchere.idEnchere
+);
+
+CREATE OR REPLACE VIEW v_lastmise as(
+  select mise.*
+  from mise
+  join v_max_per_encher
+  on v_max_per_encher.idMise = mise.idMise
+);
+
+CREATE TABLE enchereTerminer(
+  idEnchereTerminer SERIAL PRIMARY KEY,
+  idEnchere int REFERENCES enchere(idEnchere) 
+);
+
+insert into enchereTerminer(idEnchere) VALUES(3);
+
+CREATE VIEW v_enchereTerminer as 
+SELECT v_lastmise.* from v_lastmise join enchereTerminer on enchereTerminer.idEnchere = v_lastmise.idENchere; 
+
+CREATE VIEW v_enchereEnCours as
+select enchere.* from enchere LEFT JOIN enchereTerminer on enchereTerminer.idEnchere = enchere.idEnchere where enchereTerminer.idEnchereterminer is null;
 
 
+CREATE VIEW v_detailsEnchereTerminer as
+SELECT enchere.* from enchere join v_enchereterminer on v_enchereterminer.idEnchere = enchere.idEnchere;
+
+CREATE OR REPLACE VIEW v_soldeParMois AS
+select sum(soldemise) solde , cast(extract( month from datemise) as int) mois  from v_enchereterminer group by mois;
+
+CREATE VIEW v_chiffreAffaire as
+SELECT sum(v_enchereterminer.soldemise) chiffreAffaire,categorie.idCategorie from enchere join v_enchereterminer on v_enchereterminer.idEnchere = enchere.idEnchere 
+JOIN categorie on categorie.idCategorie = enchere.idCategorie group by categorie.idCategorie;
+CREATE OR REPLACE VIEW v_lastmise as(
+  select mise.*
+  from mise
+  join v_max_per_encher
+  on v_max_per_encher.idMise = mise.idMise
+);
 
 ALTER TABLE Enchere DROP CONSTRAINT FKEnchere39417;
 ALTER TABLE PhotoEnchere DROP CONSTRAINT FKPhotoEnche405191;

@@ -156,12 +156,17 @@ public class Enchere extends BddObject{
     }
 
     public ArrayList<Object> findEnchereValide(Connection connection) throws Exception {
-        String sql = "select * from enchere e left join enchereValide ev on ev.idEnchere = e.idEnchere where ev.idEnchereValide is not null";
-        return executeResultedQuery(connection, sql, null);             
+        String sql = "select * from v_encherevalide";
+        return executeResultedQuery(connection, sql, new ArrayList<>());             
     }
     
     public ArrayList<Object> findEnchereNotValide(Connection connection) throws Exception {
-        String sql = "select * from enchere e left join enchereValide ev on ev.idEnchere = e.idEnchere where ev.idEnchereValide is null";
-        return executeResultedQuery(connection, sql, null);             
+        String sql = "select * from v_encherenonvalide";
+        return executeResultedQuery(connection, sql, new ArrayList<>());             
+    }
+
+    public ArrayList<Object> findEnchereTerminer(Connection connection) throws Exception {
+        String sql = "select * from v_detailsenchereterminer";
+        return executeResultedQuery(connection, sql, new ArrayList<>());             
     }
 }

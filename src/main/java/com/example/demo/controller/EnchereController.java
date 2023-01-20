@@ -10,13 +10,13 @@ import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.application.vaeBackoffice.dbmanager.connection.BDD;
-import com.application.vaeBackoffice.util.exception.JSONException;
+import com.example.demo.dbmanager.connection.BDD;
 import com.example.demo.model.Enchere;
 import com.example.demo.model.EnchereValide;
+import com.example.demo.util.exception.JSONException;
 
 @CrossOrigin
 @RestController
@@ -35,7 +35,7 @@ public class EnchereController {
         this.returnValue = returnValue;
     }
 
-    @GetMapping("/encheres?validate")
+    @GetMapping("/encheres:validate")
     public HashMap<String, Object> findEnchereValider() throws Exception{
         returnValue.clear();
         ArrayList<Enchere> list = new ArrayList<>();
@@ -50,9 +50,7 @@ public class EnchereController {
                 list.add((Enchere)ench);
             }
             
-            if (!list.isEmpty()) {
-                returnValue.put("data", list);
-            }
+            returnValue.put("data", list);
             c.close();
         } catch (SQLException ex) {
             returnValue.put("error", new JSONException("500", ex.getMessage()));
@@ -61,7 +59,7 @@ public class EnchereController {
         return returnValue;
     }
 
-    @GetMapping("/encheres?notValidate")
+    @GetMapping("/encheres:notvalidate")
     public HashMap<String, Object> findEnchereNotValider() throws Exception{
         returnValue.clear();
         ArrayList<Enchere> list = new ArrayList<>();
@@ -76,9 +74,7 @@ public class EnchereController {
                 list.add((Enchere)ench);
             }
             
-            if (!list.isEmpty()) {
-                returnValue.put("data", list);
-            }
+            returnValue.put("data", list);
             c.close();
         } catch (SQLException ex) {
             returnValue.put("error", new JSONException("500", ex.getMessage()));
@@ -87,14 +83,13 @@ public class EnchereController {
         return returnValue;
     }
 
-    @PostMapping("/encheres")
-    public HashMap<String, Object> ValideAjoutEnchere(@RequestHeader(name="idEnchere") int idEnchere) throws Exception{
+    @PostMapping("/encheres:validation")
+    public HashMap<String, Object> ValideAjoutEnchere(@RequestBody EnchereValide enchereValide) throws Exception{
         returnValue.clear();
         try {
             BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
             Connection c = bdd.getConnection();
-            EnchereValide enchereValide = new EnchereValide();
-            enchereValide.setIdEnchere(idEnchere);
+            
             enchereValide.create(c);
             c.close();
         } catch (SQLException ex) {

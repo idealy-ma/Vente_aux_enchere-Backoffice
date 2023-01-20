@@ -11,7 +11,6 @@ import com.example.demo.dbmanager.bdd.object.BddObject;
 import com.example.demo.dbmanager.connection.BDD;
 import com.example.demo.util.security.Security;
 import com.example.demo.util.security.TokenUserModel;
-import com.example.demo.util.*;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -57,7 +56,7 @@ public class Admin extends BddObject{
         tum.setHash(Security.getMd5(String.valueOf(this.getIdAdmin())));
         tum.setExpirationDate(Timestamp.valueOf(LocalDateTime.now()));
         try {
-            BDD bdd = new BDD("postgres", "cedric10", "enchere", "postgresql");
+            BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
             Connection c = bdd.getConnection();
             tum.find(c);
             c.close();
@@ -73,11 +72,10 @@ public class Admin extends BddObject{
             try {
                 this.myToken = new TokenUserModel();
                 myToken.setUserId(this.getIdAdmin());
-                BDD bdd = new BDD("postgres", "cedric10", "enchere", "postgresql");
+                BDD bdd = new BDD("vae", "vae", "vae", "postgresql");
                 Connection c = bdd.getConnection();
                 myToken.find(c);
                 c.close();
-                // TODO : verification si le token est expirer
                 if(myToken.getHash()==null) this.generateToken();
             } catch (Exception ex) {
                 Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);

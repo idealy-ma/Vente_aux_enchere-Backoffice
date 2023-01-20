@@ -1,13 +1,25 @@
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\util\exception\JSONException.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\DemoApplication.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Client.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\controller\AdminController.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Enchere.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\dbmanager\annotation\DBTable.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Admin.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\util\security\TokenUserModel.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\dbmanager\bdd\object\BddObject.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Categorie.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\dbmanager\connection\BDD.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\dbmanager\annotation\PrimaryKey.java
-F:\ITU\S5\Mr Rojo\Enchecre\EnchereBackoffice\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\util\security\Security.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\controller\AdminController.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\controller\EnchereController.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\util\security\Security.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\dbmanager\annotation\DBTable.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\DemoApplication.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\CategorieAffaire.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\controller\CrudCommission.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\dbmanager\connection\BDD.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\RechargementCompte.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\dbmanager\bdd\object\BddObject.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\util\exception\JSONException.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\EnchereValide.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Categorie.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\controller\StatistiqueController.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\dbmanager\annotation\PrimaryKey.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\util\security\TokenUserModel.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\controller\CompteController.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Enchere.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Commission.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Statistique.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\controller\CrudCategorie.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\RechargeValide.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Admin.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\SoldeParMois.java
+C:\Users\User_HP\Documents\GitHub\Vente_aux_enchere-Backoffice\src\main\java\com\example\demo\model\Client.java

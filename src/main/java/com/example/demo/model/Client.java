@@ -115,14 +115,28 @@ public class Client extends BddObject{
 
     public void setMyToken(TokenUserModel myToken) {
         this.myToken = myToken;
-    }    
+    }
     
-    @Override
-    public void update(Connection c) throws Exception {
-        String sql = "update client set soldeClient = ? where idclient = ?";
+    public void updateSolde(Connection c) throws Exception {
+        String sql = "UPDATE client set soldeClient = ? where idClient = ?";
         ArrayList<Object> objects=new ArrayList<>();
-        objects.add(this.soldeClient);
-        objects.add(this.idClient);
+        objects.add(this.getSoldeClient());
+        objects.add(this.getIdClient());
         executeQuery(c, sql, objects);
+    }
+
+    public boolean verifySolde(double solde) {
+        if (this.getSoldeClient()>solde) {
+            return true;
+        }
+        return false;
+    }
+
+    public void debiter(double valeur){
+        this.setSoldeClient(this.getSoldeClient()-valeur);
+    }
+
+    public void crediter(double valeur){
+        this.setSoldeClient(this.getSoldeClient()+valeur);
     }
 }

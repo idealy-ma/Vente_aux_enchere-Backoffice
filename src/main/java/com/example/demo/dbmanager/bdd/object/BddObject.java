@@ -122,6 +122,7 @@ public class BddObject {
                 Object o = this.getClass().newInstance();
                 for (int i = 1; i <= column; i++) {
                     Method m = this.getMethodInto("set"+resultSetMetaData.getColumnName(i), methods);
+                    System.out.println("set"+resultSetMetaData.getColumnName(i));
                     
                     if(m==null) throw new NoSuchMethodException("No method in findall, function");
                     
@@ -178,13 +179,14 @@ public class BddObject {
             
             preparedStatement = c.prepareStatement(sql);
             
-            for (int i = 0; i < colList.length; i++) {
+            for (int i = 0, j = 1; i < colList.length; i++) {
                 System.out.println(!isPrimaryKey(colList[i]));
                 if(!isPrimaryKey(colList[i])){
                     System.out.println(colList[i]);
                     Method m = this.getMethodInto("get"+colList[i], methods);
-                    preparedStatement.setObject(i, m.invoke(this));
+                    preparedStatement.setObject(j, m.invoke(this));
                     System.out.println(preparedStatement);
+                    j++;
                 }
             }
             

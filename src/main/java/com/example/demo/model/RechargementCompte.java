@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.application.vaeBackoffice.dbmanager.annotation.PrimaryKey;
-import com.application.vaeBackoffice.dbmanager.bdd.object.BddObject;
-import com.application.vaeBackoffice.dbmanager.connection.BDD;
+import com.example.demo.dbmanager.annotation.PrimaryKey;
+import com.example.demo.dbmanager.bdd.object.BddObject;
+import com.example.demo.dbmanager.connection.BDD;
 
 
 public class RechargementCompte extends BddObject {
@@ -73,6 +73,13 @@ public class RechargementCompte extends BddObject {
         ArrayList<Object> objects=new ArrayList<>();
         objects.add(this.idClient);
         objects.add(this.montant);
+        executeQuery(c, sql, objects);
+    }
+
+    public void updateEtat(Connection c) throws Exception {
+        String sql = "UPDATE RechargementCompte set etat = 5 where idclient=?";
+        ArrayList<Object> objects=new ArrayList<>();
+        objects.add(this.getIdClient());
         executeQuery(c, sql, objects);
     }
 }

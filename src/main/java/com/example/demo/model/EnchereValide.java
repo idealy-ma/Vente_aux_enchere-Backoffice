@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.application.vaeBackoffice.dbmanager.annotation.PrimaryKey;
-import com.application.vaeBackoffice.dbmanager.bdd.object.BddObject;
-import com.application.vaeBackoffice.dbmanager.connection.BDD;
+import com.example.demo.dbmanager.annotation.PrimaryKey;
+import com.example.demo.dbmanager.bdd.object.BddObject;
+import com.example.demo.dbmanager.connection.BDD;
 
 public class EnchereValide extends BddObject {
     @PrimaryKey
