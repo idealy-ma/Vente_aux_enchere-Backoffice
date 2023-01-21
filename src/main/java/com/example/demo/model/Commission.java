@@ -32,4 +32,13 @@ public class Commission extends BddObject {
         executeQuery(c, sql, objects);
 
     }
+
+    @Override
+    public void update(Connection c) throws Exception {
+        String sql = "UPDATE Commission SET pourcentage=?";
+        ArrayList<Object> objects=new ArrayList<>();
+        objects.add(this.pourcentage);
+        executeQuery(c, sql, objects);
+
+    }
 }

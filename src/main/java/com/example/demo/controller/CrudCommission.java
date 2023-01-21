@@ -51,10 +51,10 @@ public class CrudCommission {
     }
 
     @PutMapping("/commissions")
-    public HashMap<String, Object> saveCommission(@RequestBody Commission commission) throws Exception {
+    public HashMap<String, Object> updateCommission(@RequestBody Commission commission) throws Exception {
         HashMap<String, Object> hashMap = new HashMap<>();
         try {
-            commission.updateEtat(bdd.getConnection());
+            commission.update(bdd.getConnection());
             hashMap.put("data", true);
         } catch (Exception e) {
             hashMap.put("error", e.getMessage());
