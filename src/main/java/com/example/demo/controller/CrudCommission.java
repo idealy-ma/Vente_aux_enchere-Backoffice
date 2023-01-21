@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,6 +42,19 @@ public class CrudCommission {
         HashMap<String, Object> hashMap = new HashMap<>();
         try {
             commission.create(bdd.getConnection());
+            hashMap.put("data", true);
+        } catch (Exception e) {
+            hashMap.put("error", e.getMessage());
+            e.printStackTrace();
+        }
+        return hashMap;
+    }
+
+    @PutMapping("/commissions")
+    public HashMap<String, Object> saveCommission(@RequestBody Commission commission) throws Exception {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        try {
+            commission.updateEtat(bdd.getConnection());
             hashMap.put("data", true);
         } catch (Exception e) {
             hashMap.put("error", e.getMessage());
