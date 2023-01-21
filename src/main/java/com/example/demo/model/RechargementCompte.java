@@ -77,9 +77,9 @@ public class RechargementCompte extends BddObject {
     }
 
     public void updateEtat(Connection c) throws Exception {
-        String sql = "UPDATE RechargementCompte set etat = 5 where idclient=?";
+        String sql = "UPDATE RechargementCompte set etat = 5 where idRechargement=?";
         ArrayList<Object> objects=new ArrayList<>();
-        objects.add(this.getIdClient());
+        objects.add(this.getIdRechargement());
         executeQuery(c, sql, objects);
     }
 }
